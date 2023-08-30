@@ -1,8 +1,8 @@
 # Passport-Magalu
 
-[Passport](https://github.com/jaredhanson/passport) strategy for authenticating with [magalu](http://www.magalu.com) using the OAuth 2.0 API.
+[Passport](https://github.com/jaredhanson/passport) strategy for authenticating with [magalu](https://www.magazineluiza.com.br/) using the OAuth 2.0 API.
 
-Learn more about magalu OAuth schema [here](http://developers.magalu.com/server-side/).
+Learn more about magalu OAuth schema [here](https://developers.magalu.com/docs/first_steps/create_an_application/authentication_authorization/).
 
 ## Installation
 
@@ -15,7 +15,7 @@ account and OAuth 2.0 tokens. The strategy requires a `verify` callback, which
 accepts these credentials and calls `done` providing a user, as well as
 `options` specifying a client ID, client secret, and callback URL.
 
-You can obtain the client ID and secret by creating a magalu app [here](http://applications.magalu.com.ar/list).
+You can obtain the client ID and secret by creating a magalu app [here](https://developers.magalu.com/).
 
 ```javascript
 import { MagaluStrategy, type MagaluVerifyFunction } from 'passport-magalu'
@@ -26,6 +26,7 @@ passport.use(
       clientID: "YOUR_CLIENT_ID",
       clientSecret: "YOUR_CLIENT_SECRET",
       callbackURL: "http://www.example.com/auth/magalu/callback",
+      scope: 'open:portfolio:read',
     },
     (accessToken, refreshToken, profile, done) => {
       // + store/retrieve user from database, together with access token and refresh token

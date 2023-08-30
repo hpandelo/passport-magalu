@@ -1,6 +1,1 @@
-export {
-  MagaluOptions,
-  MagaluStrategy,
-  MagaluUrls,
-  MagaluVerifyFunction,
-} from "./mercado-livre.strategy"
+export { MagaluOptions, MagaluStrategy, MagaluUrls, MagaluVerifyFunction, } from "./magalu.strategy";

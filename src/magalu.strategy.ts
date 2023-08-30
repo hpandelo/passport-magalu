@@ -4,13 +4,15 @@ import OAuth2Strategy, {
   VerifyFunction,
 } from "passport-oauth2"
 
-import { MagaluUser } from "./magalu-user.interface"
 
 export const MagaluUrls = {
   authorizationURL: "https://id.magalu.com/login",
   tokenURL: "https://id.magalu.com/oauth/token",
-  onboardingURL: "https://api.magalu.com/v0/onboarding/signup",
-  profileURL: "https://id.magalu.com/users/me",
+  sandboxApiUrl: "https://api-sandbox.magalu.com",
+  apiURL: "https://id.magalu.com/users/me",
+
+  profileURL: "/users/me",
+  onboardingURL: "/v0/onboarding/signup",
 }
 
 export type MagaluVerifyFunction = VerifyFunction
@@ -19,6 +21,8 @@ export interface MagaluOptions extends Partial<StrategyOptions> {
   clientID: string
   clientSecret: string
   callbackURL: string
+  useSandbox?: boolean
+  // choose_tenants: boolean /* Not Implemented Yet */
 }
 
 export class MagaluStrategy extends OAuth2Strategy {
@@ -51,12 +55,15 @@ export class MagaluStrategy extends OAuth2Strategy {
 
       // Onboarding Magalu
       // https://developers.magalu.com/docs/Onboarding/setup/#criar-um-registro
-      await axiosClient.post(MagaluUrls.onboardingURL)
+      // await axiosClient.post(`${MagaluUrls.apiURL}${MagaluUrls.onboardingURL}`)
 
-      const { data: user } = await axiosClient.get<MagaluUser>(
-        MagaluUrls.profileURL
-      )
-      done(null, user)
+      // TBD: "Not Implemented yet in Magalu API"
+      // const { data: user } = await axiosClient.get<MagaluUser>(
+      //   `${options.useSandbox ? MagaluUrls.sandboxApiURL ? MagaluUrls.apiURL}${MagaluUrls.profileURL}`
+      // )
+      // done(null, user)
+
+      done(null, { id: -1, status: "Not Implemented yet in Magalu API" })
     } catch (error) {
       console.error(error.message)
       done(error)
