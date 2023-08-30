@@ -17,6 +17,10 @@ accepts these credentials and calls `done` providing a user, as well as
 
 You can obtain the client ID and secret by creating a magalu app [here](https://developers.magalu.com/).
 
+## Note
+This Strategy is already using the **NEW API** and this new API is still getting implemented [Check here](https://developers.magalu.com/).
+The User endpoit wan't implemented yet by the Magalu developers. When done, I'll be updating this package to support it (or feel free to add a PR updating the file `src/magalu.strategy.ts` line 60+)
+
 ```javascript
 import { MagaluStrategy, type MagaluVerifyFunction } from 'passport-magalu'
 
